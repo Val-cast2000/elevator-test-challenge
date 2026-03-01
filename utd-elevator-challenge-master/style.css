@@ -1,28 +1,110 @@
 body {
-  font-family: Arial;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1b2735, #090a0f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#building {
-  position: relative;
-  width: 200px;
-  height: 500px;
-  border: 2px solid black;
-  margin: 20px;
-}
-
-.floor {
-  height: 50px;
-  border-top: 1px solid gray;
+/* GAME WRAPPER */
+.game-container {
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  gap: 60px;
 }
 
+/* LEFT PANEL */
+.left-panel {
+  color: white;
+  text-align: center;
+}
+
+.left-panel h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px cyan;
+}
+
+#startBtn {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #00f5ff, #00ff95);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,255,200,0.7);
+  transition: 0.3s ease;
+}
+
+#startBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0,255,200,1);
+}
+
+/* BUILDING */
+#building {
+  position: relative;
+  width: 220px;
+  height: 500px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+  box-shadow: 
+    10px 10px 25px rgba(0,0,0,0.8),
+    -5px -5px 15px rgba(255,255,255,0.05);
+  border: 4px solid #111;
+  overflow: hidden;
+}
+
+/* FLOORS */
+.floor {
+  height: 50px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  color: #00ffcc;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffcc;
+}
+
+/* PACMAN ELEVATOR */
 .elevator {
   position: absolute;
   width: 50px;
   height: 50px;
-  background: orange;
-  right: 10px;
+  right: 15px;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #ff9900);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(255, 200, 0, 0.9),
+    inset -6px -6px 10px rgba(0,0,0,0.4);
   transition: bottom 0.5s ease;
+}
+
+/* Pacman mouth (cleaner) */
+.elevator::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 25px solid #1c1c1c;
+  right: 0;
+  top: 0;
+}
+
+/* Subtle glow pulse */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(255,200,0,0.6); }
+  100% { box-shadow: 0 0 25px rgba(255,200,0,1); }
+}
+
+.elevator {
+  animation: glow 0.8s infinite alternate;
 }
